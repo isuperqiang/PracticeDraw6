@@ -21,6 +21,7 @@ import static com.hencoder.hencoderpracticedraw6.Utils.dpToPixel;
 public class Practice01Translation extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
+    int animateState;
 
     public Practice01Translation(Context context) {
         super(context);
@@ -49,6 +50,26 @@ public class Practice01Translation extends RelativeLayout {
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+                switch (animateState) {
+                    case 0:
+                        imageView.animate().translationX(500);
+                        animateState = 1;
+                        break;
+                    case 1:
+                        imageView.animate().translationXBy(-500);
+                        animateState = 2;
+                        break;
+                    case 2:
+                        imageView.animate().translationY(200);
+                        animateState = 3;
+                        break;
+                    case 3:
+                        imageView.animate().translationY(0);
+                        animateState = 0;
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
